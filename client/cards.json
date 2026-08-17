@@ -1,0 +1,52 @@
+[
+  { 
+    "id": 1,
+    "termo": "apple",
+    "significado": "maçã"
+  },
+  {
+    "id": 2,
+    "termo": "book",
+    "significado": "livro"
+  },
+  {
+    "id": 3,
+    "termo": "computer",
+    "significado": "computador"
+  },
+  {
+    "id": 4,
+    "termo": "good morning",
+    "significado": "bom dia"
+  },
+  {
+    "id": 5,
+    "termo": "thank you",
+    "significado": "obrigado"
+  },
+  {
+    "id": 6,
+    "termo": "happy birthday",
+    "significado": "feliz aniversário"
+  },
+  {
+    "id": 7,
+    "termo": "car",
+    "significado": "carro"
+  },
+  {
+    "id": 8,
+    "termo": "house",
+    "significado": "casa"
+  },
+  {
+    "id": 9,
+    "termo": "weather",
+    "significado": "clima"
+  },
+  {
+    "id": 10,
+    "termo": "see you later",
+    "significado": "até mais tarde"
+  }
+]
