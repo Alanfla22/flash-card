@@ -30,4 +30,7 @@ formElem.addEventListener("formdata", (e) => {
     method: "POST",
     body: data,
   });
+
+  location.replace(location.href);  
+    
 });
