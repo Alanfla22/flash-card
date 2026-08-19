@@ -31,6 +31,8 @@ formElem.addEventListener("formdata", (e) => {
     body: data,
   });
 
+  e.preventDefault();  
+
   location.replace(location.href);  
     
 });
