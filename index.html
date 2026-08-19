@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Card</title>
+    <link rel="stylesheet" href="styles/style.css" />
+</head>
+<body>
+    <div class="tab">
+        <button command="show-modal" class="tablinks" commandfor="my-dialog">Novo Card</button>
+        <button id="view-card-tab" class="tablinks" onclick="openCity(event, 'viewCard')">Flash Cards</button>
+        <button id="list-card-tab" class="tablinks" onclick="openCity(event, 'listCard')">Lista</button>        
+    </div>
+    <article>
+        <dialog id="my-dialog">
+            <button class="button-close" commandfor="my-dialog" command="close">Close</button>
+            <form id="form" name="form" enctype="application/x-www-form-urlencoded" method="post" autocomplete="off">
+                <label for="termo">Termo</label>
+                <textarea id="termo" name="termo" rows="5" cols="33"></textarea>
+                <label for="significado">Significado</label>
+                <textarea id="significado" name="significado" rows="5" cols="33"></textarea>
+                <br>
+                <input type="submit">
+            </form>
+        </dialog>        
+        <div id="viewCard" class="tabcontent">
+            <!-- Slideshow container -->
+            <div class="slideshow-container">
+                <div id="numbertext"></div>
+                <br><br>
+                <div id="view-card" class="slideshow-container2">    
+                    
+                    <!-- Full-width images with number and caption text -->
+                </div>    
+                <!-- Next and previous buttons -->
+                <a id="prev" class="prev" onclick=showSlide(-1)>&#10094;</a>
+                <a id="next" class="next" onclick=showSlide(1)>&#10095;</a>
+            </div>
+        </div>
+        <div id="listCard" class="tabcontent">
+                <!-- Slideshow container -->
+            <div id="list-card" class="slideshow-container"></div>            
+        </div>
+    </article>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script type=module src="script.js"></script>
+    <script src="styles/openCity.js"></script>
+    <script src="styles/showSlide.js"></script>    
+</body>
+</html>
+
+
