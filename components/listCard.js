@@ -7,21 +7,34 @@ export function listCard (data) {
              
         cardList.append("li")
         .append("button")
-        .attr("commandfor", d._id)
+        .attr("commandfor", "dialog " + d._id)
         .attr("command", "show-modal")
         .attr("class", "button-list")
         .text(d.termo);
 
         const cardListDialog = cardList.append("dialog")
-                                        .attr("id", d._id);
+                                        .attr("id", "dialog " + d._id);
 
         cardListDialog.append("button")
-        .attr("commandfor", d._id)
+        .attr("commandfor", "dialog " + d._id)
         .attr("command", "close")
         .attr("class", "button-close")
         .text("Close");                                            
   
-        const cardListDialogForm = cardListDialog.append("form");
+        const cardListDialogForm = cardListDialog.append("form")
+                                                .attr("enctype","application/x-www-form-urlencoded")
+                                                .on("formdata", (e) => {
+
+                                                    const data = e.formData;
+
+                                                    data.append("id", d._id);
+
+                                                    fetch("https://fast-mongo-test.onrender.com", {
+                                                        method: "PATCH",
+                                                        body: data,
+                                                    });            
+
+                                                });
 
         cardListDialogForm.append("label")
         .attr("for", "termo")
