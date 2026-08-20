@@ -1,7 +1,7 @@
 import { viewCard } from "./components/viewCard.js";
 import { listCard } from "./components/listCard.js";
 
-d3.json("https://fast-mongo-test-2.onrender.com").then((data) => {
+d3.json("https://fast-mongo-test.onrender.com").then((data) => {
 
     const obj = JSON.parse(data);
 
@@ -26,7 +26,7 @@ formElem.addEventListener("formdata", (e) => {
   const data = e.formData;
 
   // Submit the data via fetch()
-  fetch("https://fast-mongo-test-2.onrender.com", {
+  fetch("https://fast-mongo-test.onrender.com", {
     method: "POST",
     body: data,
   });
