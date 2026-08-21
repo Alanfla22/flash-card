@@ -20,15 +20,36 @@ document.getElementById("view-card-tab").click();
 
 const formElem = document.getElementById("form");
 
-formElem.addEventListener("formdata", (e) => {
+formElem.addEventListener("submit", (e) => {
 
-  // Get the form data from the event object
-  const data = e.formData;
+  e.preventDefault();
+
+  const termo = document.getElementById("termo").value.trim();
+
+  const significado = document.getElementById("significado").value.trim();
+
+  const postData = {
+    termo: termo,
+    significado: significado
+  }
+
+  alert(JSON.stringify(postData));
 
   // Submit the data via fetch()
   fetch("https://fast-mongo-test.onrender.com", {
     method: "POST",
-    body: data,
+    body: JSON.stringify(postData)
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error (`Server respondend with status: ${response.status}`);
+    }
+    return response.json();
+  }).then(() => {
+    alert("Postado com sucesso!!");
+  }).catch(error => {
+    alert(`Error: ${error.message}`)
   });
-    
+
+
 });
+
