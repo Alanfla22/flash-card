@@ -28,21 +28,23 @@ formElem.addEventListener("submit", (e) => {
 
   const significado = document.getElementById("significado").value.trim();
 
-  const postData = {
-    termo: termo,
-    significado: significado
-  }
+  const postData = {termo: termo, significado: significado};
 
   alert(JSON.stringify(postData));
 
   // Submit the data via fetch()
   fetch("https://fast-mongo-test.onrender.com", {
     method: "POST",
-    body: JSON.stringify(postData)
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({termo: termo, significado: significado})
   }).then(response => {
     if (!response.ok) {
+      console.log(response.json());
       throw new Error (`Server respondend with status: ${response.status}`);
     }
+    
     return response.json();
   }).then(() => {
     alert("Postado com sucesso!!");
