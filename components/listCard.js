@@ -30,7 +30,7 @@ export function listCard (data) {
                                                     data.append("id", d._id);
 
                                                     fetch("https://fast-mongo-test.onrender.com", {
-                                                        method: "PATCH",
+                                                        method: "PUT",
                                                         body: data,
                                                     });            
 
