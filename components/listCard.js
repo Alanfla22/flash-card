@@ -22,17 +22,39 @@ export function listCard (data) {
         .text("Close");                                            
   
         const cardListDialogForm = cardListDialog.append("form")
-                                                .attr("enctype","application/x-www-form-urlencoded")
-                                                .on("formdata", (e) => {
+                                                .on("submit", (e) => {
 
-                                                    const data = e.formData;
+                                                    e.preventDefault();
 
-                                                    data.append("id", d._id);
+                                                    const postData = {
 
+                                                        id: d._id,
+                                                        termo: "novvv",
+                                                        significado: "showww"
+                                                    };
+                                                         
+                                                    alert(postData);
+                                                    // Submit the data via fetch()
                                                     fetch("https://fast-mongo-test.onrender.com", {
-                                                        method: "PUT",
-                                                        body: data,
-                                                    });            
+                                                        method: "PATCH",
+                                                        headers: {
+                                                            "Content-Type": "application/json"
+                                                        },                                                        
+                                                        body: JSON.stringify(postData)
+                                                    }).then(response => {
+                                                        if (!response.ok) {
+                                                            console.log(response.json());
+                                                            alert("deu ruim");
+                                                            throw new Error (`Server respondend with status: ${response.status}`);
+                                                        }
+                                                        return response.json();
+                                                    }).then((data) => {
+                                                        alert(`Postado: ${data}`);
+                                                    }).catch(error => {
+                                                        alert(`Error: ${error.message}`)
+                                                    });
+                                                    
+
 
                                                 });
 
