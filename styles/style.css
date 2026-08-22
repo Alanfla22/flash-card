@@ -157,6 +157,15 @@ dialog input[type="submit"]:hover {
     background: var(--primary-hover);
 }
 
+dialog input[type="button"] {
+    background: var(--danger);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 /* botão fechar */
 
 .button-close {
