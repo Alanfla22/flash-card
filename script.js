@@ -1,20 +1,20 @@
 import { viewCard } from "./components/viewCard.js";
 import { listCard } from "./components/listCard.js";
 
-d3.json("https://fast-mongo-test.onrender.com").then((data) => {
+function atualizarPage() {
 
-    const obj = JSON.parse(data);
+  d3.json("https://fast-mongo-test.onrender.com").then((data) => {
 
-    console.log(obj);
+      const obj = JSON.parse(data);
 
-    viewCard(obj);
-    listCard(obj);  
+      viewCard(obj);
+      listCard(obj); 
 
+  });
 
-});
+}
 
-
-
+atualizarPage();
 
 document.getElementById("view-card-tab").click();
 
@@ -30,28 +30,27 @@ formElem.addEventListener("submit", (e) => {
 
   const postData = {termo: termo, significado: significado};
 
-  alert(JSON.stringify(postData));
-
   // Submit the data via fetch()
   fetch("https://fast-mongo-test.onrender.com", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({termo: termo, significado: significado})
+    body: JSON.stringify(postData)
   }).then(response => {
     if (!response.ok) {
-      console.log(response.json());
+
       throw new Error (`Server respondend with status: ${response.status}`);
     }
     
     return response.json();
   }).then(() => {
     alert("Postado com sucesso!!");
+
+
   }).catch(error => {
     alert(`Error: ${error.message}`)
   });
 
-
+  location.replace("http://127.0.0.1:5500")
 });
-
