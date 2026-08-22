@@ -26,14 +26,18 @@ export function listCard (data) {
 
                                                     e.preventDefault();
 
+                                                    const termo = document.getElementById("termo " + d._id).value.trim();
+
+                                                    const significado = document.getElementById("significado " + d._id).value.trim();
+
                                                     const postData = {
 
                                                         id: d._id,
-                                                        termo: "novvv",
-                                                        significado: "showww"
+                                                        termo: termo,
+                                                        significado: significado
                                                     };
-                                                         
-                                                    alert(postData);
+
+                                                       
                                                     // Submit the data via fetch()
                                                     fetch("https://fast-mongo-test.onrender.com", {
                                                         method: "PATCH",
@@ -43,38 +47,38 @@ export function listCard (data) {
                                                         body: JSON.stringify(postData)
                                                     }).then(response => {
                                                         if (!response.ok) {
-                                                            console.log(response.json());
-                                                            alert("deu ruim");
+
                                                             throw new Error (`Server respondend with status: ${response.status}`);
                                                         }
                                                         return response.json();
-                                                    }).then((data) => {
-                                                        alert(`Postado: ${data}`);
+                                                    }).then(() => {
+                                                        alert("Atualizado !!!");
                                                     }).catch(error => {
                                                         alert(`Error: ${error.message}`)
                                                     });
-                                                    
+
+                                                    location.replace("http://127.0.0.1:5500");
 
 
                                                 });
 
         cardListDialogForm.append("label")
-        .attr("for", "termo")
+        .attr("for", "termo " + d.id )
         .text("Termo");
 
         cardListDialogForm.append("textarea")
-        .attr("id", "termo")
+        .attr("id", "termo " + d._id)
         .attr("name", "termo")
         .attr("rows", 5)
         .attr("cols", 33)
         .text(d.termo);
 
         cardListDialogForm.append("label")
-        .attr("for", "significado")
+        .attr("for", "significado " + d._id)
         .text("Significado");
 
         cardListDialogForm.append("textarea")
-        .attr("id", "significado")
+        .attr("id", "significado " + d._id)
         .attr("name", "significado")
         .attr("rows", 5)
         .attr("cols", 33)
@@ -84,7 +88,36 @@ export function listCard (data) {
 
         cardListDialogForm.append("input")
         .attr("type", "submit")
-        .attr("value", "Editar");    
+        .attr("value", "Editar");
+        
+        cardListDialogForm.append("br");
+
+        cardListDialogForm.append("input")
+        .attr("type", "button")
+        .attr("value", "Excluir")
+        .on("click", () => {
+                  
+            // Submit the data via fetch()
+            fetch(`https://fast-mongo-test.onrender.com/${d._id}`, {
+                method: "POST"                
+            }).then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error (`Server respondend with status: ${response.status}`);
+                }
+                return response.json();
+            }).then((data) => {
+                alert(`Excluido!!! ${data}`);
+            }).catch(error => {
+                alert(`Error: ${error.message}`)
+            });
+
+            location.replace("http://127.0.0.1:5500");
+
+
+        });        
+        ;           
 
     })    
 }
